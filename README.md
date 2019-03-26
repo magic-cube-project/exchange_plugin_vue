@@ -2,14 +2,14 @@
 
 ## Catalog
 
-- [Project&#8194introduction](#Project&#8194introduction)
-  - [Project&#8194framework](#Project&#8194framework)
-  - [Development&#8194tool](#Development&#8194tool)
-  - [Compiling&#8194environment](#Compiling&#8194environment)
-  - [Running&#8194environment](#Running&#8194environment)
+- [Project&#8194introduction](#Project introduction)
+  - [Project&#8194framework](#Project& framework)
+  - [Development&#8194tool](#Development tool)
+  - [Compiling&#8194environment](#Compiling environment)
+  - [Running&#8194environment](#Running environment)
 - [Instructions](#Instructions)
-  - [How&#8194to&#8194compile](#How&#8194to&#8194compile)
-  - [How&#8194to&#8194start](#How&#8194to&#8194start)
+  - [How&#8194to&#8194compile](#How to compile)
+  - [How&#8194to&#8194start](#How to start)
 - [Other](#Other)
 
 <a name="Project introduction"></a>
