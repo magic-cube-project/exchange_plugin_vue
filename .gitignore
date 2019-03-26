@@ -59,3 +59,7 @@ typings/
 
 # next.js build output
 .next
+
+# DS_Store build output
+.DS_Store
+package-lock.json
