@@ -183,6 +183,7 @@
 
 
     <div class="rank-wrap" v-show="tapStatus === 2">
+      领取记录
     </div>
 
     
