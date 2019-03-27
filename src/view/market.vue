@@ -1,14 +1,14 @@
 <template>
   <div class="market">
     <div class="market-head">
-      <div class="return"></div>
+      <div class="return" @click="close"></div>
       <div class="recharge-item">
         <div class="item-icon"></div>
-        <span @click="jumpMall('mcc')">{{account.mcc}}</span>
+        <span>{{account.mcc}}</span>
       </div>
       <div class="recharge-item">
         <div class="clover"></div>
-        <span @click="jumpMall('clv')">{{account.clover}}</span>
+        <span>{{account.clover}}</span>
       </div>
     </div>
     <!-- 市场详情 -->
@@ -181,26 +181,10 @@
       </div>
     </div>
 
-
-    <div class="rank-wrap" v-show="tapStatus === 2">
-      领取记录
+    <!-- 领取记录 -->
+    <div class="record-wrap" v-show="tapStatus === 2">
+      <span>记录</span>
     </div>
-
-    
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
   </div>
 </template>
 
@@ -378,9 +362,21 @@ export default {
       window.location.href =
         "http://exchange.mofangvr.com?from=game&r_url="+window.location.href;
     },
+
+    close() {
+      if (sysUtil.isAndroid()) {
+        Android.closeWeb();
+      } else {
+          window.webkit.messageHandlers.closeWeb.postMessage(null);
+      }
+    },
     
   },
-  mounted() {},
+  mounted() {
+    if(sysUtil.isiPhoneX()){
+       app.css(".market .market-head {margin-top: 50px !important;}");
+    }
+  },
   created() {
     this.getmarketInfo();
     this.getklineInfo();
@@ -401,7 +397,7 @@ export default {
   background: url("http://img.cube.mofangvr.com/lulu/market_solt_bg.png") center
     center no-repeat;
   background-size: cover;
-  overflow: hidden;
+  overflow: auto;
   .market-head {
     margin-top: 0.9rem;
     display: flex;
@@ -582,7 +578,6 @@ export default {
   .receive-wrap {
     width: 100%;
     height: 58%;
-    overflow-y: scroll;
     .map {
       width: 100%;
       height: 16.6rem;
@@ -831,5 +826,11 @@ export default {
       }
     }
   }
+}
+
+.record-wrap{
+  width:100%;
+  height:50%;
+  // background-color: red;
 }
 </style>
