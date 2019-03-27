@@ -183,7 +183,7 @@
 
     <!-- 领取记录 -->
     <div class="record-wrap" v-show="tapStatus === 2">
-      <span>记录</span>
+      <span>{{$t('message.record')}}</span>
     </div>
   </div>
 </template>
@@ -545,7 +545,7 @@ export default {
     .nav-item {
       width: 6.2rem;
       height: 2.4rem;
-      background: url('http://img.cube.mofangvr.com/lulu/slot_change_item_new.png') center center no-repeat;
+      background: url('../assets/image/market/slot_change_item_new.png') center center no-repeat;
       background-size: contain;
       p {
         font-size: 1rem;
@@ -558,8 +558,7 @@ export default {
     .active {
       width: 6.2rem;
       height: 2.4rem;
-      background: url("http://img.cube.mofangvr.com/lulu/slot_change_item_active_new.png") center
-        center no-repeat;
+      background: url("../assets/image/market/slot_change_item_active_new.png") center center no-repeat;
       background-size: cover;
       border-image: 0;
       box-shadow:0 0 0 0;
@@ -669,8 +668,8 @@ export default {
           }
         }
         .receive-buttom-success {
-          background: url('');
-          background-color: #cccccc;
+          background: url('../assets/image/market/receive_activepng.png') center center no-repeat;
+          // background-color: #cccccc;
         }
       }
     }
