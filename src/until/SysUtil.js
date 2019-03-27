@@ -14,5 +14,13 @@ export default {
   isNative: function () {
     var u = navigator.userAgent;
     return u.indexOf('JHELLO') > -1;
-  }
+  },
+  isiPhoneX:function(){
+    if(this.isIos()){
+      if((screen.height/screen.width)>2){
+         return true;
+      }
+    }
+    return false;
+ }
 };

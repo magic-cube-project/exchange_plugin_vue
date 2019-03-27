@@ -22,6 +22,7 @@ Vue.use(AlertPlugin);
 Vue.use(ConfirmPlugin);
 Vue.use(VueI18n);
 
+
 let lang;
 function getLang(){
   lang =localStorage.getItem("lang");

@@ -32,8 +32,6 @@
       </div>
       <div class="icon" @click="jumpExchange">
         <img src="../assets/image/market/exchange.png" alt=""/>
-        <!-- <p>{{$t('message.in')}}</p>
-        <p>{{$t('message.exchange')}}</p> -->
       </div>
     </div>
     <div class="nav-wrap">
@@ -153,8 +151,6 @@
         </div>
         <div class="list-empty" v-if="cloverRank.length === 0">{{$t('message.noReceipt')}}</div>
       </div>
-
-
       <div class="mcc-rank-wrap" v-show="rankTapStatus === 1">
         <div class="clv-rank-item" v-for="item in MCCRank" :key="item.index">
           <div class="clv-rank-wrap-bg" v-if="item.rankNum > 1"></div>
@@ -184,6 +180,26 @@
         <div class="list-empty" v-if="MCCRank.length === 0">{{$t('message.noRanking')}}</div>
       </div>
     </div>
+
+
+    <div class="rank-wrap" v-show="tapStatus === 2">
+    </div>
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
   </div>
 </template>
 
@@ -359,7 +375,7 @@ export default {
     //跳转交易所
     jumpExchange() {
       window.location.href =
-        "http://exchange.mofangvr.com?sys=unity&sss=sss#/authorization";
+        "http://exchange.mofangvr.com?from=game&r_url="+window.location.href;
     },
     
   },
