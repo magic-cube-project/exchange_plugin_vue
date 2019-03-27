@@ -394,7 +394,7 @@ export default {
   width: calc(100% - 1.6rem);
   padding: 0 0.8rem 0 0.8rem;
   height: 100%;
-  background: url("http://img.cube.mofangvr.com/lulu/market_solt_bg.png") center
+  background: url("../assets/image/market/market_solt_bg .png") center
     center no-repeat;
   background-size: cover;
   overflow: auto;
