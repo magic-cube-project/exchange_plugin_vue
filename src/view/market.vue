@@ -223,8 +223,8 @@ export default {
         diffPrice: 0 //差价
       },
       clover: {
-        today: 100, //今天可领取
-        all: 100 //今天发放总额
+        today:Math.floor(Math.random() * (100 - 20+1)) + 20, //今天可领取
+        all: 666 //今天发放总额
       }, //四叶草
       account: {
         //个人账户
@@ -233,11 +233,11 @@ export default {
       },
       cloverRank: [], //今日四叶草领取排行榜
       mcc: {
-        today: 100, //今日可领取MCC
-        all: 100 //今日发放总额MCC
+        today: 0, //今日可领取MCC
+        all: 0 //今日发放总额MCC
       },
       MCCRank: [], //今日领取MCC排行榜
-      receiveCloverStatus: 1, //领取四叶草状态 0 为未领取 1为已领取
+      receiveCloverStatus: 0, //领取四叶草状态 0 为未领取 1为已领取
       receiveMCCStatus: 1, //领取MCC状态 0 为未领取 1为已领取
       userId: "",
       userPhone: "", // 用户手机号码
@@ -247,6 +247,12 @@ export default {
     };
   },
   methods: {
+    //点击领取按钮
+    receiveClover(){
+      this.receiveCloverStatus=1;
+      this.account.clover=this.clover.today;
+
+    },
     //切换主导航栏
     changeTap(currentStatus) {
       this.tapStatus = currentStatus;
@@ -656,20 +662,21 @@ export default {
           width: 3.9rem;
           height: 1.6rem;
           border-radius: 0.8rem;
-          background: url('http://img.cube.mofangvr.com/lulu/receive_activepng.png') center center no-repeat;
+          // background: url('http://img.cube.mofangvr.com/lulu/receive_activepng.png') center center no-repeat;
           background-size: cover;
           font-weight: bold;
           color: #ffffff;
           text-align: center;
           line-height: 1.6rem;;
           z-index: 2;
+          background-color: #C9559C;
           &:active {
             opacity: 0.9;
           }
         }
         .receive-buttom-success {
-          background: url('../assets/image/market/receive_activepng.png') center center no-repeat;
-          // background-color: #cccccc;
+          // background: url('../assets/image/market/receive_activepng.png') center center no-repeat;
+          background-color: #cccccc;
         }
       }
     }
