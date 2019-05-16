@@ -13,13 +13,17 @@
     </div>
     <!-- 市场详情 -->
     <div class="market-detail">
-      <img src="../assets/image/market/solt_detail_bg.png.png">
+      <img src="../assets/image/market/solt_detail_bg.png">
       <!-- <p class="title"></p> -->
       <div class="quotes">
         <p class="current-price lang-color-up">{{topData.curPrice}}</p>
         <p class="current-quotes">
-          <span class="lang-color-up">{{topData.diffPrice > 0 ? '+' + topData.diffPrice :topData.diffPrice}}</span>
-          <span class="lang-color-up">{{topData.profit > 0 ? '+' + topData.profit + '%': topData.profit + '%'}}</span>
+          <span
+            class="lang-color-up"
+          >{{topData.diffPrice > 0 ? '+' + topData.diffPrice :topData.diffPrice}}</span>
+          <span
+            class="lang-color-up"
+          >{{topData.profit > 0 ? '+' + topData.profit + '%': topData.profit + '%'}}</span>
         </p>
       </div>
       <div class="price-item highest-price">
@@ -31,13 +35,15 @@
         <span class="lang-color-down">{{topData.lowest}}</span>
       </div>
       <div class="icon" @click="jumpExchange">
-        <img src="../assets/image/market/exchange.png" alt=""/>
+        <img src="../assets/image/market/exchange.png" alt>
       </div>
     </div>
     <div class="nav-wrap">
-      <div class="nav-item" :class=" tapStatus == 0? 'active': ''" @click="changeTap(0)"><p>{{$t('message.todayTake')}}</p></div>
-      <div class="nav-item" :class=" tapStatus == 1? 'active': ''" @click="changeTap(1)"><p>{{$t('message.ranking')}}</p></div>
-      <div class="nav-item" :class=" tapStatus == 2? 'active': ''" @click="changeTap(2)"><p>{{$t('message.record')}}</p></div>
+      <div class="nav-item" :class=" tapStatus == 0? 'active': ''" @click="changeTap(0)">
+        <p>{{$t('message.todayTake')}}</p>
+      </div>
+      <!-- <div class="nav-item" :class=" tapStatus == 1? 'active': ''" @click="changeTap(1)"><p>{{$t('message.ranking')}}</p></div> -->
+      <!-- <div class="nav-item" :class=" tapStatus == 2? 'active': ''" @click="changeTap(2)"><p>{{$t('message.record')}}</p></div> -->
     </div>
 
     <!-- 每日可领取 -->
@@ -51,15 +57,19 @@
           :class=" subTapStatus == 0? 'active': ''"
           @click="changeSubTitle(0)"
         >
-          <div class="red-dot" v-show="receiveCloverStatus === 0"></div>{{$t('message.jingyubi')}}
+          <div class="red-dot" v-show="receiveCloverStatus === 0"></div>
+          {{$t('message.jingyubi')}}
         </div>
         <div
           class="subnav-item"
           :class=" subTapStatus == 1? 'active': ''"
           @click="changeSubTitle(1)"
         >
-          <div class="red-dot" v-show="receiveMCCStatus === 0"></div>{{$t('message.bonus')}}
+          <div class="red-dot" v-show="receiveMCCStatus === 0"></div>
+          {{$t('message.bonus')}}
         </div>
+
+        <span style="color:#fff" @click="jumpHelp">帮助</span>
         <!-- <div class="help" @click="help"></div> -->
       </div>
       <!-- 四叶草可领取 -->
@@ -68,7 +78,7 @@
           <!-- <img :src="clvItemBg"> -->
           <p class="message">
             <label>{{$t('message.todayGrant')}}:</label>
-            <span>{{clover.all}}</span>
+            <b class>{{clover.all}}</b>
           </p>
         </div>
         <div class="clv-item">
@@ -125,7 +135,7 @@
       </div>
       <div class="clv-rank-wrap" v-show="rankTapStatus === 0">
         <div class="clv-rank-item" v-for="item in cloverRank" :key="item.index">
-         <div class="clv-rank-wrap-bg" v-if="item.rankNum > 1"></div>
+          <div class="clv-rank-wrap-bg" v-if="item.rankNum > 1"></div>
           <div class="level">
             <img :src="item.rankNumBg" v-show="item.rankNum <= 2">
             <span class="real-number" v-show="item.rankNum <= 2">{{item.rankNum + 1}}</span>
@@ -139,7 +149,7 @@
               <p class="name">{{item.name}}</p>
               <div class="amount">
                 <div class="cloverIcon">
-                  <img :src="jingyubi" alt="">
+                  <img :src="jingyubi" alt>
                 </div>
                 <span>{{item.account}}</span>
               </div>
@@ -167,7 +177,7 @@
               <p class="name">{{item.name}}</p>
               <div class="amount">
                 <div class="cloverIcon">
-                  <img :src="jingyubi" alt="">
+                  <img :src="jingyubi" alt>
                 </div>
                 <span>{{item.account}}</span>
               </div>
@@ -184,6 +194,17 @@
     <!-- 领取记录 -->
     <div class="record-wrap" v-show="tapStatus === 2">
       <span>{{$t('message.record')}}</span>
+    </div>
+
+    <!-- 弹框请输入手机号 -->
+    <div class="please-login-wrap" :class="{hideLogin:!showLogin,showLogin:showLogin}">
+      <div class="login-phone">
+        <div class="error" @click="showLoginPopup">
+          <img src="../assets/image/close.png" alt>
+        </div>
+        <input type="number" placeholder="请输入手机号领取挖矿奖励" v-model="tel">
+        <button @click="confirm">{{$t('message.confirm')}}</button>
+      </div>
     </div>
   </div>
 </template>
@@ -205,8 +226,8 @@ export default {
       tapStatus: 0,
       subTapStatus: 0,
       rankTapStatus: 0,
-      jingyubi: 'http://img.cube.mofangvr.com/lulu/jingyubi.png',
-      clvRankBg: 'http://img.cube.mofangvr.com/cube/clove.png',
+      jingyubi: "http://img.cube.mofangvr.com/lulu/jingyubi.png",
+      clvRankBg: "http://img.cube.mofangvr.com/cube/clove.png",
       mccRankBg: "http://img.cube.mofangvr.com/cube/clv_rank_item_bg.png",
       clvItemBg: "http://img.cube.mofangvr.com/cube/clv_item_bg.png",
       avatar: "http://img.cube.mofangvr.com/cube/exchange_unlogin.png",
@@ -223,8 +244,8 @@ export default {
         diffPrice: 0 //差价
       },
       clover: {
-        today:Math.floor(Math.random() * (100 - 20+1)) + 20, //今天可领取
-        all: 666 //今天发放总额
+        today: Math.floor(Math.random() * (100 - 20 + 1)) + 20, //今天可领取
+        all: 100668 //今天发放总额
       }, //四叶草
       account: {
         //个人账户
@@ -243,15 +264,69 @@ export default {
       userPhone: "", // 用户手机号码
       resStr: "", //这是一个特殊的字段我也不知道反正一定不能少
       openId: "",
-      receiveCloveSuccess: 0
+      receiveCloveSuccess: 0,
+      tel: "",
+      showLogin: false
     };
   },
   methods: {
+    //跳转路由
+    jumpHelp() {
+      // console.log('条');
+      this.$router.push({
+        path: `/help`
+      });
+    },
+    //输入手机号确认的按钮
+    confirm() {
+      this.showLogin = false;
+      market.getOpenId(this.tel).then(res => {
+        localStorage.setItem("tel", this.tel);
+        localStorage.setItem("openid", res.result.openid);
+        this.getBalance(res.result.openid);
+      });
+    },
+    showLoginPopup() {
+      this.showLogin = false;
+    },
     //点击领取按钮
-    receiveClover(){
-      this.receiveCloverStatus=1;
-      this.account.clover=this.clover.today;
+    receiveClover() {
+      if (this.receiveCloverStatus == 1) {
 
+      } else {
+        if (localStorage.getItem("openid")) {
+          this.$vux.loading.show({
+            text: "Loading"
+          });
+
+          market
+            .createtoken(localStorage.getItem("openid"), this.clover.today)
+            .then(res => {
+              this.account.clover =
+                Number(res.result.WC.freeze) + Number(res.result.WC.available);
+              this.receiveCloverStatus = 1;
+              this.clover.today = 0;
+              this.$vux.loading.hide();
+
+              this.$vux.toast.show({
+                text: "领取成功"
+              });
+
+              account.updateToken();
+              
+            });
+        } else {
+          this.showLogin = true;
+        }
+      }
+    },
+    //获取账户信息
+    getBalance(openid) {
+      market.balance(openid).then(res => {
+        this.account.mcc = Number(res.result.MCC.available) + Number(res.result.MCC.freeze);
+        this.account.clover = Number(res.result.WC.available) + Number(res.result.WC.freeze);
+        console.log(this.account.mcc,this.account.clover);
+      });
     },
     //切换主导航栏
     changeTap(currentStatus) {
@@ -269,7 +344,7 @@ export default {
     getmarketInfo() {
       market.getLatestMarketDetail().then(res => {
         let deepMarket = res.result.market;
-        console.log(deepMarket);
+        // console.log(deepMarket);
         this.topData = {
           diffPrice: Number(deepMarket.last - deepMarket.open).toFixed(2),
           curPrice: deepMarket.last, //当前价格
@@ -287,30 +362,30 @@ export default {
             (deepMarket.last - deepMarket.open) / deepMarket.open
           ) //涨跌幅
         };
-        let upArr=document.querySelectorAll(".lang-color-up");
-        let downArr=document.querySelectorAll(".lang-color-down");
-        let lang =localStorage.getItem("lang");
-        if(lang=="zh-CN"){
-          upArr.forEach((val,index,arr)=>{
-            val.style.color="#ff4465";
-          })
-          downArr.forEach((val,index,arr)=>{
-            val.style.color="#25d441";
-          })
-        }else{
-            upArr.forEach((val,index,arr)=>{
-            val.style.color="#25d441";
-          })
-          downArr.forEach((val,index,arr)=>{
-            val.style.color="#ff4465";
-          })
+        let upArr = document.querySelectorAll(".lang-color-up");
+        let downArr = document.querySelectorAll(".lang-color-down");
+        let lang = localStorage.getItem("lang");
+        if (lang == "zh-CN") {
+          upArr.forEach((val, index, arr) => {
+            val.style.color = "#ff4465";
+          });
+          downArr.forEach((val, index, arr) => {
+            val.style.color = "#25d441";
+          });
+        } else {
+          upArr.forEach((val, index, arr) => {
+            val.style.color = "#25d441";
+          });
+          downArr.forEach((val, index, arr) => {
+            val.style.color = "#ff4465";
+          });
         }
       });
     },
     //获取K线数据
     getklineInfo() {
-      var time = 900;
-      var periodTime = 27000;
+      var time = 60;
+      var periodTime = 1800;
 
       //初始化K线图
       market.getKlinesDetail(periodTime, time).then(res => {
@@ -366,42 +441,98 @@ export default {
     //跳转交易所
     jumpExchange() {
       window.location.href =
-        "http://exchange.mofangvr.com?from=game&r_url="+window.location.href;
+        "http://exchange.mofangvr.com?from=game&market=WCMCC&r_url=" + window.location.href;
     },
 
     close() {
       if (sysUtil.isAndroid()) {
         Android.closeWeb();
       } else {
-          window.webkit.messageHandlers.closeWeb.postMessage(null);
+        window.webkit.messageHandlers.closeWeb.postMessage(null);
       }
-    },
-    
+    }
   },
   mounted() {
-    if(sysUtil.isiPhoneX()){
-       app.css(".market .market-head {margin-top: 50px !important;}");
+    if (sysUtil.isiPhoneX()) {
+      app.css(".market .market-head {margin-top: 50px !important;}");
     }
+
+    if(account.getIsToken()>0){
+      this.clover.today = 0;
+      this.receiveCloverStatus=1;
+    }
+
   },
   created() {
     this.getmarketInfo();
     this.getklineInfo();
+    if (localStorage.getItem("openid")) {
+      this.getBalance(localStorage.getItem("openid"));
+    }
+    
 
-    let tel = URLUtil.getValue("tel");
-    this.userPhone = tel;
-    localStorage.setItem("tel", this.userPhone);
+    // let tel = URLUtil.getValue("tel");
+    // this.userPhone = tel;
+    // localStorage.setItem("tel", this.userPhone);
   }
 };
 </script>
 
 <style lang="less" scoped>
+.please-login-wrap {
+  background: url(../assets/image/login_bg.png) no-repeat center center;
+  position: fixed;
+  width: 80%;
+  height: 12.86rem;
+  background-color: #ccc;
+  left: calc(50% - 10.43rem);
+  top: 30%;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 1.43rem;
+  text-align: center;
+}
+.login-phone .error {
+  height: 2.14rem;
+}
+
+.login-phone .error img {
+  width: 1.86rem;
+  position: absolute;
+  right: -3px;
+  top: -3px;
+}
+
+.login-phone input {
+  width: 100%;
+  height: 2.71rem;
+  border: 2px solid rgba(177, 2, 185, 1);
+  border-radius: 3.93rem;
+  text-indent: 1rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+.login-phone button {
+  margin-top: 2rem;
+  width: 5rem;
+  height: 2.29rem;
+  background-color: rgba(177, 2, 185, 1);
+  color: rgba(255, 255, 255, 1);
+  border-radius: 3.93rem;
+  font-weight: 600;
+}
+.showLogin {
+  display: block;
+}
+.hideLogin {
+  display: none;
+}
 .market {
   display: block;
   width: calc(100% - 1.6rem);
   padding: 0 0.8rem 0 0.8rem;
   height: 100%;
-  background: url("../assets/image/market/market_solt_bg .png") center
-    center no-repeat;
+  background: url("../assets/image/market/market_solt_bg.png") center center
+    no-repeat;
   background-size: cover;
   overflow: auto;
   .market-head {
@@ -429,8 +560,8 @@ export default {
         margin-right: 0.4rem;
         width: 1.3rem;
         height: 1.3rem;
-        background: url("https://img.cube.mofangvr.com/1550230578769") center center
-          no-repeat;
+        background: url("https://img.cube.mofangvr.com/1550230578769") center
+          center no-repeat;
         background-size: cover;
       }
       .item-icon {
@@ -483,8 +614,8 @@ export default {
         font-size: 0.9rem;
         line-height: 1.4;
         color: #ff4465;
-        span{
-          margin-right:0.3rem;
+        span {
+          margin-right: 0.3rem;
         }
       }
     }
@@ -516,34 +647,36 @@ export default {
     }
     .icon {
       margin-right: 1.1rem;
-      width: 4.7rem;
-      height: 4rem;
+      width: 5.48rem;
+      height: 3.34rem;
       position: relative;
+      // background-color: red;
       // color: #ffffff;
       // background: url("http://img.cube.mofangvr.com/lulu/solt_exchange_bg.png") center
       //   center no-repeat;
       background-size: initial;
       z-index: 2;
       // border: 2px solid #410037;
-      img{
-        position:absolute;
-        width:5,48rem;
-        height:2.34rem;
-        left:0; 
-        top:1rem;
+      img {
+        position: absolute;
+        width: 5.48rem;
+        height: 2.34rem;
+        left: 0;
+        top: 0.5rem;
       }
       p {
         font-size: 1rem;
-        line-height:1.5;
+        line-height: 1.5;
         text-align: center;
         font-weight: bold;
         &:first-child {
-          margin-top: .5rem;
+          margin-top: 0.5rem;
         }
       }
     }
   }
   .nav-wrap {
+    display: none !important;
     margin: 1.6rem 0;
     display: flex;
     align-items: center;
@@ -551,12 +684,13 @@ export default {
     .nav-item {
       width: 6.2rem;
       height: 2.4rem;
-      background: url('../assets/image/market/slot_change_item_new.png') center center no-repeat;
+      background: url("../assets/image/market/slot_change_item_new.png") center
+        center no-repeat;
       background-size: contain;
       p {
         font-size: 1rem;
         line-height: 2rem;
-        color: #C9559C;
+        color: #c9559c;
         font-weight: bold;
         text-align: center;
       }
@@ -564,13 +698,14 @@ export default {
     .active {
       width: 6.2rem;
       height: 2.4rem;
-      background: url("../assets/image/market/slot_change_item_active_new.png") center center no-repeat;
+      background: url("../assets/image/market/slot_change_item_active_new.png")
+        center center no-repeat;
       background-size: cover;
       border-image: 0;
-      box-shadow:0 0 0 0;
+      box-shadow: 0 0 0 0;
       border: 0;
       p {
-         color: #ffffff;
+        color: #ffffff;
       }
     }
   }
@@ -667,9 +802,9 @@ export default {
           font-weight: bold;
           color: #ffffff;
           text-align: center;
-          line-height: 1.6rem;;
+          line-height: 1.6rem;
           z-index: 2;
-          background-color: #C9559C;
+          background-color: #c9559c;
           &:active {
             opacity: 0.9;
           }
@@ -729,9 +864,9 @@ export default {
         align-items: center;
         width: 94.5%;
         height: 2.8rem;
-        background:rgba(136,0,83,1);
-        
-        border-radius: .3rem;
+        background: rgba(136, 0, 83, 1);
+
+        border-radius: 0.3rem;
         .clv-rank-wrap-bg {
           position: absolute;
           left: 0;
@@ -739,11 +874,11 @@ export default {
           width: 100%;
           height: 100%;
           // background:#630000;
-          background:rgba(69,11,32,0.65);
+          background: rgba(69, 11, 32, 0.65);
           z-index: 2;
         }
         .level {
-           position: relative;
+          position: relative;
           margin: 0 0.8rem;
           width: 1.9rem;
           height: 2rem;
@@ -760,8 +895,8 @@ export default {
             position: absolute;
             right: 0.2rem;
             top: 0.21rem;
-            width: .9rem;
-            height: .9rem;
+            width: 0.9rem;
+            height: 0.9rem;
             font-size: 0.7rem;
             line-height: 1;
             color: #ffffff;
@@ -790,7 +925,7 @@ export default {
             }
           }
           .message {
-            margin-left: .9rem;
+            margin-left: 0.9rem;
             font-size: 0.8rem;
             line-height: 1.4;
             color: #ffffff;
@@ -798,7 +933,7 @@ export default {
               display: flex;
               align-items: center;
               .cloverIcon {
-                margin-right: .3rem;
+                margin-right: 0.3rem;
                 width: 0.8rem;
                 height: 0.8rem;
                 img {
@@ -813,8 +948,8 @@ export default {
           margin-right: 0.3rem;
           width: 5.3rem;
           height: 1.5rem;
-          background: url("http://img.cube.mofangvr.com/lulu/market_quotes_bg_new.png") center
-            center no-repeat;
+          background: url("http://img.cube.mofangvr.com/lulu/market_quotes_bg_new.png")
+            center center no-repeat;
           background-size: cover;
           overflow: hidden;
           z-index: 2;
@@ -834,9 +969,17 @@ export default {
   }
 }
 
-.record-wrap{
-  width:100%;
-  height:50%;
+.record-wrap {
+  width: 100%;
+  height: 50%;
   // background-color: red;
+}
+
+.message label,
+.message span {
+  color: #fff !important;
+}
+.message b {
+  color: #fff !important;
 }
 </style>

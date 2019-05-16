@@ -20,5 +20,31 @@ export default {
       .then((res) => {
           return Promise.resolve(res);
       });
+  },
+
+  getOpenId:(tel)=>{
+    return http.lulupost('getUserOpenid',{tel:tel})
+      .then((res) => {
+        return Promise.resolve(res);
+      });
+  },
+
+  createtoken:(openid,amount)=>{
+    return http.lulupost('createtoken',{openid:openid,amount:amount})
+      .then((res) => {
+        return Promise.resolve(res);
+      });
+  },
+
+  balance:(openid)=>{
+    return http.lulupost('balance',{openid:openid})
+      .then((res) => {
+        return Promise.resolve(res);
+      })
+  },
+
+  balance2:()=>{
+    console.log(123);
   }
+
 }

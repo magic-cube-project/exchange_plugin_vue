@@ -17,6 +17,8 @@ module.exports ={
         MCCranking:"MCC币领取排名",
         noReceipt:"今日暂无领取",
         noRanking:"暂无排行",
-        record:"领取记录"
+        record:"领取记录",
+        confirm:"确定",
+        pleasePhone:"请输入手机号"
     }
 }

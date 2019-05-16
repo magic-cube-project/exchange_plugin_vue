@@ -1,6 +1,17 @@
 import http from '../assets/js/portHttp';
 
+var isToken = 0;
+
 export default {
+
+  getIsToken:()=>{
+      return isToken
+  },
+
+  updateToken:()=>{
+      isToken++;
+  },
+
   /**
    * 获取用户信息
    * params

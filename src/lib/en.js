@@ -17,6 +17,8 @@ module.exports ={
         MCCranking:"MCC Ranking",
         noReceipt:"No bonus today",
         noRanking:"No ranking",
-        record:"Record"
+        record:"Record",
+        confirm:"Confirm",
+        pleasePhone:"Please enter your mobile phone number"
     }
 }
